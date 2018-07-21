@@ -48,9 +48,9 @@
 
                     console.log(imgData);
 
-                    var particals = [];
+                    var particles = [];
                     // 拣取部分像素粒子作为轮廓
-                    function getParticals() {
+                    function getparticles() {
                         // 按某一间隔拣取像素点
                         var particleSize_x = 1,
                             particleSize_y = 1;
@@ -70,7 +70,7 @@
                                     }
 
                                     // 复合网格 & 色值筛选的粒子
-                                    particals.push(partical);
+                                    particles.push(partical);
                                 }
                             }
                         }
@@ -82,15 +82,15 @@
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
                         
                         var cur_partical = null;
-                        for (var i = 0, length = particals.length; i < length; i++) {
-                            cur_partical = paricals[i];
+                        for (var i = 0, length = particles.length; i < length; i++) {
+                            cur_partical = particles[i];
                             ctx.fillStyle = cur_partical.fillStyle;
                             ctx.fillRect(cur_partical.x, cur_partical.y, 1, 1); // 粒子大小，即1 * 1
                         }
                     }
 
                     // 5. 执行粒子化过程
-                    getParticals();
+                    getparticles();
                     draw();
                 };
                 img.src= './img.png';
