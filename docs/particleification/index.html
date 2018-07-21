@@ -58,14 +58,14 @@
 
                         var index = 0;  // 像素色值数组索引
 
-                        for (var i = 1; i <= cols; i++) {
-                            for (var j = 1; j <= rows; j++) {
-                                index = ((j * prop_h - 1) * img.width + i * prop_w - 1) * 4; // 第i,j个网格处的第一个粒子索引
+                        for (var i = 1; i <= rows; i++) {
+                            for (var j = 1; j <= cols; j++) {
+                                index = (i * prop_h - 1) * img.width + j - 1; // 第i,j个网格处的第一个粒子索引
                                 if (imgData.data[index] > 250) {
                                     var partical = {
                                         // 随机偏移一点点
-                                        x: posX + i * prop_w + (Math.random() - 0.5) * 20,
-                                        y: posY + j * prop_h + (Math.random() - 0.5) * 20,
+                                        x: posX + j * prop_w + (Math.random() - 0.5) * 20,
+                                        y: posY + i * prop_h + (Math.random() - 0.5) * 20,
                                         fillStyle: "#006eff"
                                     }
 
@@ -83,7 +83,7 @@
                         
                         var cur_partical = null;
                         for (var i = 0, length = particals.length; i < length; i++) {
-                            cur_partical = particals[i];
+                            cur_partical = paricals[i];
                             ctx.fillStyle = cur_partical.fillStyle;
                             ctx.fillRect(cur_partical.x, cur_partical.y, 1, 1); // 粒子大小，即1 * 1
                         }
