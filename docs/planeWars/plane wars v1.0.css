@@ -1,0 +1,16 @@
+﻿@utf-8;
+
+*{ margin: 0; padding: 0;}
+
+/* 场景样式 */
+body{ overflow: hidden; background: #000;}
+
+/* stage 样式 */
+.stage{ position: relative; width: 300px; height: 500px; margin: 50px auto 0; border: 0px solid #fff; overflow: hidden; box-shadow: 0 0 10px 0 #fff inset;}
+.stage .s-title{ color: #fff; font-size: 26px; line-height: 80px; text-align: center;}
+.stage .s-option{ width: 150px; height: 30px; margin: 30px auto 60px; background: #fff; color: #000; font-size: 14px; line-height: 30px; text-align: center; cursor: pointer;}
+.stage .s-option:hover{ background: #f90; color: #fff;}
+
+.stage .plane{ position: absolute;}
+.stage .bullet{ position: absolute;}
+.stage .enemy{ position: absolute;}
