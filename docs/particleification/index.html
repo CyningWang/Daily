@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片粒子化</title>
+    <style>
+        body{
+            height: 100%;
+            background: #000;
+        }
+        #canvas{
+            position: absolute;
+            display: block;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: -1;
+            box-shadow: 0 0 10px 0 #fff inset;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="400">您的浏览器不支持canvas.</canvas>
+    <script>
+        (function () {
+            // 1. 常规套路，获取canvas,context
+            var canvas = document.getElementById('canvas');
+            var ctx = null;
+
+            if (canvas.getContext) {
+                // 平稳退化
+                ctx = canvas.getContext('2d');
+
+                // 2. 载入图片
+                var img = new Image();
+                img.onload = function () {
+                    // 3. 加载完成后，将图片绘制到画布
+                    var posX = parseInt(canvas.width/2 - img.width/2),
+                        posY = parseInt(canvas.height/2 - img.height/2);
+                    ctx.drawImage(img, posX, posY);
+ 
+                    // 4. 获取图像的像素信息
+                    var imgData = ctx.getImageData(0, 0, img.width, img.height);
+
+                    var particals = [];
+                    // 拣取部分像素粒子作为轮廓
+                    function getParticals() {
+                        // 100 * 100 的网格拣取 像素粒子
+                        var rows = 100,
+                            cols = 100;
+
+                        var prop_w = parseInt(img.width / cols),
+                            prop_h = parseInt(img.height / rows);
+
+                        var index = 0;  // 像素色值数组索引
+
+                        for (var i = 1; i <= cols; i++) {
+                            for (var j = 1; j <= rows; j++) {
+                                index = ((j * prop_h - 1) * img.width + i * prop_w - 1) * 4; // 第i,j个网格处的第一个粒子索引
+                                if (imgData.data[index] > 250) {
+                                    var partical = {
+                                        // 随机偏移一点点
+                                        x: posX + i * prop_w + (Math.random() - 0.5) * 20,
+                                        y: posY + j * prop_h + (Math.random() - 0.5) * 20,
+                                        fillStyle: "#006eff"
+                                    }
+
+                                    // 复合网格 & 色值筛选的粒子
+                                    particals.push(partical);
+                                }
+                            }
+                        }
+                    }
+
+                    // 绘制粒子轮廓
+                    function draw() {
+                        // 清空画布
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        
+                        var cur_partical = null;
+                        for (var i = 0, length = particals.length; i < length; i++) {
+                            cur_partical = particals[i];
+                            ctx.fillStyle = cur_partical.fillStyle;
+                            ctx.fillRect(cur_partical.x, cur_partical.y, 1, 1); // 粒子大小，即1 * 1
+                        }
+                    }
+
+                    // 5. 执行粒子化过程
+                    getParticals();
+                    draw();
+                };
+                img.src= './img.png';
+            }
+
+        })();
+
+    </script>
+</body>
+</html>
