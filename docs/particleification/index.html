@@ -51,24 +51,22 @@
                     var particals = [];
                     // 拣取部分像素粒子作为轮廓
                     function getParticals() {
-                        // 100 * 100 的网格拣取 像素粒子
-                        var rows = 100,
-                            cols = 100;
-
-                        var prop_w = parseInt(img.width / cols),
-                            prop_h = parseInt(img.height / rows);
-
+                        // 按某一间隔拣取像素点
+                        var particleSize_x = 1,
+                            particleSize_y = 1;
                         var index = 0;  // 像素色值数组索引
 
-                        for (var i = 1; i <= rows; i++) {
-                            for (var j = 1; j <= cols; j++) {
-                                index = (i * prop_h - 1) * img.width + j - 1; // 第i,j个网格处的第一个粒子索引
-                                if (imgData.data[index] > 250) {
+                        for (var i = 0; i < img.width; i += particleSize_x) {
+                            for (var j = 0; j < img.height; j += particleSize_y) {
+                                index = (j * imgData.width + i) * 4;    // 第j行第i个像素，有四个色彩通道，所以 * 4
+                                // 透明度值 > 125 的挑出来
+                                if (imgData.data[index + 3] > 125) {
+                                    var color = 'rgba(' + imgData.data[index] + ',' + imgData.data[index + 1] + ',' + imgData.data[index + 2] + ',' + imgData.data[index + 3] + ')';    
                                     var partical = {
                                         // 随机偏移一点点
-                                        x: posX + j * prop_w + (Math.random() - 0.5) * 20,
-                                        y: posY + i * prop_h + (Math.random() - 0.5) * 20,
-                                        fillStyle: "#006eff"
+                                        x: posX + i + (Math.random() - 0.5) * 20,
+                                        y: posY + j + (Math.random() - 0.5) * 20,
+                                        fillStyle: color
                                     }
 
                                     // 复合网格 & 色值筛选的粒子
