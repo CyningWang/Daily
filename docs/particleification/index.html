@@ -62,7 +62,7 @@
                                 // 透明度值 > 125 的挑出来
                                 if (imgData.data[index + 3] > 125) {
                                     var color = 'rgba(' + imgData.data[index] + ',' + imgData.data[index + 1] + ',' + imgData.data[index + 2] + ',' + imgData.data[index + 3] + ')';    
-                                    var partical = {
+                                    var particle = {
                                         // 随机偏移一点点
                                         x: posX + i + (Math.random() - 0.5) * 20,
                                         y: posY + j + (Math.random() - 0.5) * 20,
@@ -70,7 +70,7 @@
                                     }
 
                                     // 复合网格 & 色值筛选的粒子
-                                    particles.push(partical);
+                                    particles.push(particle);
                                 }
                             }
                         }
@@ -81,11 +81,11 @@
                         // 清空画布
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
                         
-                        var cur_partical = null;
+                        var cur_particle = null;
                         for (var i = 0, length = particles.length; i < length; i++) {
-                            cur_partical = particles[i];
-                            ctx.fillStyle = cur_partical.fillStyle;
-                            ctx.fillRect(cur_partical.x, cur_partical.y, 1, 1); // 粒子大小，即1 * 1
+                            cur_particle = particles[i];
+                            ctx.fillStyle = cur_particle.fillStyle;
+                            ctx.fillRect(cur_particle.x, cur_particle.y, 1, 1); // 粒子大小，即1 * 1
                         }
                     }
 
