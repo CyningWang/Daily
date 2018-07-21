@@ -46,6 +46,8 @@
                     // 4. 获取图像的像素信息
                     var imgData = ctx.getImageData(0, 0, img.width, img.height);
 
+                    console.log(imgData);
+
                     var particals = [];
                     // 拣取部分像素粒子作为轮廓
                     function getParticals() {
