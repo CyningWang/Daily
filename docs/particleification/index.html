@@ -59,13 +59,13 @@
                         for (var i = 0; i < img.width; i += particleSize_x) {
                             for (var j = 0; j < img.height; j += particleSize_y) {
                                 index = (j * imgData.width + i) * 4;    // 第j行第i个像素，有四个色彩通道，所以 * 4
-                                // 透明度值 > 125 的挑出来
-                                if (imgData.data[index + 3] > 125) {
+                                // 透明度值 > 250 的挑出来
+                                if (imgData.data[index + 3] > 250) {
                                     var color = 'rgba(' + imgData.data[index] + ',' + imgData.data[index + 1] + ',' + imgData.data[index + 2] + ',' + imgData.data[index + 3] + ')';    
                                     var particle = {
                                         // 随机偏移一点点
-                                        x: posX + i + (Math.random() - 0.5) * 20,
-                                        y: posY + j + (Math.random() - 0.5) * 20,
+                                        x: posX + i + (Math.random() - 0.5) * 8,
+                                        y: posY + j + (Math.random() - 0.5) * 8,
                                         fillStyle: color
                                     }
 
