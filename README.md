@@ -11,4 +11,4 @@
 
 ### 6. music v1 失效,易源数据不再提供jsonp返回格式
 
-### 7. music [js练习](https://cyningwang.github.io/Daily/music/)
+### 7. music [js练习](https://cyningwang.github.io/Daily/music/) 音源无效,易源数据不再维护QQ音乐免费接口，只能获取歌曲信息和歌词部分
