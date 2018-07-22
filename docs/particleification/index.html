@@ -57,9 +57,9 @@
                             particleSize_y = 1;
                         var index = 0;  // 像素色值数组索引
 
-                        for (var i = 0; i < imgData.height; i += particleSize_x) {
-                            for (var j = 0; j < imgData.width; j += particleSize_y) {
-                                index = (i * imgData.width + j) * 4;    // 第i行第j个像素，有四个色彩通道，所以 * 4
+                        for (var i = 1; i <= 300; i += particleSize_x) {
+                            for (var j = 1; j <= 300; j += particleSize_y) {
+                                index = [(i-1) * 300 + (j-1)] * 4;    // 第i行第j个像素，有四个色彩通道，所以 * 4
                                 // 透明度值 > 250 的挑出来
                                 // if (imgData.data[index + 3] > 250) {
                                     var color = 'rgba(' + imgData.data[index] + ',' + imgData.data[index + 1] + ',' + imgData.data[index + 2] + ',' + imgData.data[index + 3] + ')';    
