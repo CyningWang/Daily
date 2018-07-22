@@ -1,0 +1,68 @@
+@charset 'UTF-8';
+
+html, body{ overflow: hidden; height: 100%;}
+
+/* 音乐播放器 */
+#player{ position: relative; width: 320px; height: 100%; background: #000;}
+
+/* 顶部：歌单 + 搜索框 + 历史 */
+#player #top{ position: relative; width: 100%; height: 30px; padding: 8px 0; text-align: center;}
+#top > a, 
+#top > input{ float: left; width: 40px; height: 20px; margin-left: 7px; border: 1px solid #fff; border-radius: 10px; color: #ccc; font-size: 12px; line-height: 20px;}
+#top > input{ width:205px; background:rgba(255,255,255,0.3); border-radius:15px; color: #fff; text-indent:10px;}
+
+/* 歌单 */
+#top #playlist{display: none; position: absolute; z-index: 999; left: 8px; top: 35px; width: 200px; padding: 2px 6px; background: rgba(79, 74, 74, 0.8); border-radius: 4px; font-size: 12px; text-align: left;}
+#playlist > p{ overflow: hidden; color: #ccc; line-height: 24px;}
+#playlist > p span{ float: left; width: 70%; text-align: left; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; cursor: pointer; }
+#playlist > p span:nth-child(2){ float: right; width: 20%; text-align: right;}
+
+/* 历史 */
+#top #history{ display: none; position: absolute; top: 35px; right: 8px; width: 250px; padding: 2px 6px; background: rgba(79, 74, 74, 0.8); border-radius: 4px; font-size: 12px; text-align: left;}
+#history p{ color: #ccc; line-height: 24px; overflow: hidden;}
+#history > p span{ float: left; width: calc(100% - 80px); text-align: left; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; cursor: pointer; }
+#history > p span:nth-child(2),
+#history > p span:nth-child(3){ float: right; width: 30px; margin: 0 2px; text-align: center;}
+
+/* 搜索下拉列表 */
+#top #searchlist{ display: none; overflow: hidden; position: fixed; z-index: 999; top: 35px; left: 0; right: 0; margin: auto; width: 220px; height: 320px; border-radius: 4px; color: #ccc; font-size: 12px;}
+#searchlist > ul{ position: absolute; top: 0; left: 0; width: calc(100% - 12px); padding: 2px 6px; background: rgba(79, 74, 74, 0.8);}
+#searchlist > ul li{ height: 24px; line-height: 24px; cursor: pointer;}
+#searchlist > ul span{ float: left; width: 65%; height: 100%; text-align: left; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; cursor: pointer; }
+#searchlist > ul span:nth-child(2){ float: right; width: 35%; text-align: right;}
+
+/* 中部：歌曲名 + 歌手 + 图片 + 歌词 */
+#middle .m-title, 
+#middle .m-singer{ width: 100%; height: 30px; color: #ccc; font-size: 16px; font-weight: bold; text-align: center; line-height: 30px;}
+#middle .m-singer{ height: 25px; font-size: 14px; font-weight: normal; line-height: 25px;}
+#middle .m-cd{ width: 150px; height: 150px; margin: 6px auto 0; background: url('../images/cd.png') no-repeat 0 0 / 100% 100%; border-radius: 50%;}
+#middle .m-cd.rotate{ -webkit-animation: rotate 5s linear infinite; animation: rotate 5s linear infinite;}
+#middle .m-cd.rotate.pause{ -webkit-animation-play-state:paused; animation-play-state: paused;}
+@-webkit-keyframes rotate{
+	from{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+	to{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+}
+@keyframes rotate{
+	from{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+	to{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+}
+
+#middle .m-lrc{ overflow: hidden; position: relative; width: 300px; height: 200px; margin: 10px auto 0; color: rgb(204, 204, 204);}
+.m-lrc .lrc-content{ position: absolute; top: 0; left: 0; width: 100%;}
+.m-lrc .lrc-content p{ color: #ccc; font-size: 12px; line-height: 20px; text-align: center;}
+
+/* 底部：进度条 + 各种键 */
+#bottom .b-progress{ display: -webkit-flex; display: flex; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 10px; color: #fff; font-size: 12px;}
+.b-progress .pro-bar{ display: -webkit-flex; display: flex; width: 250px; height:2px; background:#bebebe; margin:9px 5px 0;}
+.pro-bar span.bar{ display: block; width: 0; height: 2px; background: rgb(0 ,255, 66);}
+.pro-bar i.btn{ display: block; margin-top: -2px; width: 6px; height: 6px; background:url("../images/circle.gif"); border-radius:50%; font-style: normal;}
+
+#bottom p.b-button{ display: -webkit-flex; display: flex; -webkit-box-sizing: border-box; box-sizing: border-box; width: 100%; height: 50px;}
+p.b-button > a{ -webkit-flex: 1; flex: 1; background: url('../images/rand2.png') no-repeat center center;}
+p.b-button > a:nth-child(2){ background-image: url('../images/prev.png');}
+p.b-button > a:nth-child(3){ background-image: url('../images/play.png');}
+p.b-button > a:nth-child(4){ background-image: url('../images/next.png');}
+
+
+/* 提示 */
+#tip{ display: none; position: absolute; left: 0; top: 0; right: 0; bottom: 0; margin: auto; width: 80px; height: 30px; background: rgba(79, 74, 74, 0.35); border-radius: 2px; color: #ccc; font-size: 12px; line-height: 30px; text-align: center;}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta http-equiv='content-type' content='text/html;charset=utf-8' />
+		<!-- title -->
+		<title>音乐播放器</title>
+
+		<!-- 移动端适配 -->
+		<script>
+			var oMeta = adaptation(); // 初始适配
+			window.onresize = function(){ // 窗口动态改变后，适配
+				adaptation(oMeta);
+			}; 
+			function adaptation(meta){
+				var w = window.screen.width,
+					  scale = w / 320;
+
+				var attrs = {
+					'name' : 'viewport',
+					'content' : 'width=' + w + ', initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no'
+				};
+
+				if(meta !== undefined){
+					for(key in attrs){
+						meta[key] = attrs[key];
+					}
+				}else{
+					var meta = document.createElement('meta');
+					for(key in attrs){
+						meta[key] = attrs[key];
+					}
+					document.getElementsByTagName('head')[0].appendChild(meta);
+					return meta;
+				}
+			}
+		</script>
+
+		<!-- css -->
+		<link rel='stylesheet' href='css/base.css' />
+		<link rel='stylesheet' href='css/music.css' />
+
+	</head>
+	<body>
+
+		<div id='player'>
+			
+			<!-- 顶部搜索栏 + 歌单 + 历史 -->
+			<div id='top'>
+				<a href='javascript:void(0)'>歌单</a>
+				<input type='text' placeholder='搜索歌曲' />
+				<a href='javascript:void(0)'>历史</a>
+				
+				<!-- 下拉歌单 & 历史 -->
+				<div id='playlist'>
+					<p><span class="songname">海阔天空</span><span class="remove">删除</span></p>
+					<p><span class="songname">半壶纱</span><span class="remove">删除</span></p>
+					<p><span class="songname">画中仙</span><span class="remove">删除</span></p>
+					<p><span class="songname">光辉岁月</span><span class="remove">删除</span></p>
+					<p><span class="songname">最初的梦想</span><span class="remove">删除</span></p>
+					<p><span class="songname">我懂了</span><span class="remove">删除</span></p>
+					<p><span class="songname">我最闪亮</span><span class="remove">删除</span></p>
+					<p><span class="songname">爱的魔法</span><span class="remove">删除</span></p>
+					<p><span class="songname">戎装信仰</span><span class="remove">删除</span></p>
+					<p><span class="songname">大小姐</span><span class="remove">删除</span></p>
+					<p><span class="songname" id='202832197'>我有一个道姑朋友</span><span class="remove">删除</span></p>
+					<p><span class="songname">原点</span><span class="remove">删除</span></p>
+					<p><span class="songname">相思垢</span><span class="remove">删除</span></p>
+				</div>
+				<div id='searchlist'>
+					<ul></ul>
+				</div>
+				<div id='history'>
+				</div>
+			</div>
+
+			<!-- 中部歌曲名 + 歌手名 + 图片 + 歌词 -->
+			<div id='middle'>
+				<p class='m-title'>海阔天空</p>
+				<p class='m-singer'>Beyond</p>
+				<div class='m-cd'></div>
+				<div class='m-lrc'>
+					<div class='lrc-content'>
+					</div>
+				</div>
+			</div>
+
+			<!-- 底部进度条 + 各种键 -->
+			<div id='bottom'>
+				<div class='b-progress'>
+					<span class='curTime'>00:00</span>
+					<div class='pro-bar'>
+						<span class='bar'></span>
+						<i class='btn'></i>
+					</div>
+					<span class='allTime'>00:00</span>
+				</div>
+
+				<p class='b-button'>
+					<a href='javascript:void(0);' class='btn-rand'></a>
+					<a href='javascript:void(0);' class='btn-prev'></a>
+					<a href='javascript:void(0);' class='btn-play'></a>
+					<a href='javascript:void(0);' class='btn-next'></a>
+				</p>
+			</div>
+
+			<!-- 提示 -->
+			<span id='tip'>频繁请求</span>
+
+		</div>
+
+		<audio src='' class='player-audio'></audio>
+
+		<!-- js -->
+		<script src='./js/music.js'></script>
+
+	</body>
+</html>
