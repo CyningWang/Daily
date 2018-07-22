@@ -8,3 +8,5 @@
 ### 4. pingpong [js练习](https://cyningwang.github.io/Daily/pingpong/)
 
 ### 5. particleification [图片粒子化](https://cyningwang.github.io/Daily/particleification/)
+
+### 6. music v1 失效,易源数据不再提供jsonp返回格式
