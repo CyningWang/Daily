@@ -661,7 +661,7 @@
 	function createSongSrc(keyword) {
 		// 发送CORS请求
 		createCORSRequest({
-			url: 'http://route.showapi.com/213-1',
+			url: 'https://route.showapi.com/213-1',
 			type: 'POST',
 			data: {
 				"showapi_timestamp": formatDateTime(),
@@ -679,7 +679,7 @@
 	// CORS 获取歌词
 	function createLrcSrc(id){
 		createCORSRequest({
-			url: 'http://route.showapi.com/213-2',
+			url: 'https://route.showapi.com/213-2',
 			type: 'POST',
 			data: {
 				"showapi_timestamp": formatDateTime(),
